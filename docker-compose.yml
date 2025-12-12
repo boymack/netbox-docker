@@ -28,11 +28,11 @@ services:
 
   redis-cache:
     image: valkey/valkey:8.1-alpine
-    command: ["valkey-server", "--requirepass", ${REDIS_CACHE_PASSWORD}]
+    command: ["valkey-server", "--requirepass", "${REDIS_CACHE_PASSWORD}"]
     volumes:
       - netbox-redis-cache-data:/data
     healthcheck:
-      test: ["CMD-SHELL", 'valkey-cli -a ${REDIS_CACHE_PASSWORD} ping | grep -q PONG']
+      test: ["CMD-SHELL", 'valkey-cli -a \"${REDIS_CACHE_PASSWORD}" ping | grep -q PONG']
       interval: 5s
       timeout: 3s
       retries: 10
